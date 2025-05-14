@@ -58,6 +58,10 @@ class InteiroGigante{
         cout << endl;
     }
     
+    //=================================
+    //===========OPERATORS=============
+    //=================================
+
     int operator+(InteiroGigante c_B){
         int iCarryIn = 0;
         
@@ -81,6 +85,60 @@ class InteiroGigante{
         Resize();
         return iCarryIn;
     }
+
+    int operator-(InteiroGigante c_Other){
+        // TODO
+    }
+
+    // return true if this is bigger than other
+    bool operator>(InteiroGigante c_Other){
+        for(int i = 0; i < 40; i++){
+            if(iNumero[i] > c_Other.iNumero[i]){
+                return true;
+            }else if(iNumero[i] < c_Other.iNumero[i]){
+                return false;
+            }
+        }
+
+        return false;
+    }
+
+    // return true if this is less than other
+    bool operator<(InteiroGigante c_Other){
+        for(int i = 0; i < 40; i++){
+            if(iNumero[i] < c_Other.iNumero[i]){
+                return true;
+            }else if(iNumero[i] > c_Other.iNumero[i]){
+                return false;
+            }
+        }
+        return false;
+    }
+
+    // return true if both are equal
+    bool operator==(InteiroGigante c_Other){
+        for(int i = 0; i < 40; i++){
+            if(this->iNumero[i] != c_Other.iNumero[i]){
+                return false;
+            }
+        }
+        return true;
+    }
+
+    // return true if them are not equal
+    bool operator!=(InteiroGigante c_Other){
+        return !(this->operator==(c_Other));
+    }
+
+    // return true if this is bigger or equal than other
+    bool operator>=(InteiroGigante c_Other){
+        return (this->operator>(c_Other) || this->operator==(c_Other));
+    }
+
+    // return true if this is less or equal than other
+    bool operator<=(InteiroGigante c_Other){
+        return (this->operator<(c_Other) || this->operator==(c_Other));
+    }
     
     int GetSize(){
         return this->iSize;
@@ -99,10 +157,25 @@ int main(){
     meuNumero2.ReadInteiroGigante();
     cout << "------------------------" << endl;
     meuNumero2.PrintInteiroGigante();
-    cout << "------------SOMA----------" << endl;
-
-    meuNumero + meuNumero2;
     
+    cout << "------------COMP<==>----------" << endl;
+    if(meuNumero > meuNumero2){
+        cout << "num1 é maior que 2" << endl;
+    }else if(meuNumero < meuNumero2){
+        cout << "num1 é menor que 2" << endl;
+    }
+    if(meuNumero >= meuNumero2){
+        cout << "num1 é maior ou igual a 2" << endl;
+    }else if(meuNumero <= meuNumero2){
+        cout << "num1 é menor ou igual a 2" << endl;
+    }
+    if(meuNumero == meuNumero2){
+        cout << "num1 é igual a 2" << endl;
+    }else if(meuNumero != meuNumero2){
+        cout << "num1 é diferente de 2" << endl;
+    }
+
+    cout << "------------SOMA------------" << endl;
+    meuNumero + meuNumero2;
     meuNumero.PrintInteiroGigante();
-    cout << "SIZE : " << meuNumero.GetSize() << endl;
 }
