@@ -87,7 +87,35 @@ class InteiroGigante{
     }
 
     int operator-(InteiroGigante c_Other){
-        // TODO
+        // TODO: ARRUMAR RESULTADOS NEGATIVOS
+
+        int *iMaiorNumero, *iMenorNumero;
+        bool bNegative = false;
+        if(this->operator>(c_Other)){
+            iMaiorNumero = this->iNumero;
+            iMenorNumero = c_Other.iNumero;
+        }else{
+            iMaiorNumero = c_Other.iNumero;
+            iMenorNumero = this->iNumero;
+            bNegative = true;
+        }
+
+
+        for(int i = 39; i >= 0; i--){
+            if(iMaiorNumero[i] < iMenorNumero[i] && i-1 >= 0){
+                iMaiorNumero[i-1] -= 1;
+                iMaiorNumero[i] += 10;
+                
+                cout << "1: " << iMaiorNumero[i] << " - 2: " << iMenorNumero[i] << " = " << iMaiorNumero[i] - iMenorNumero[i] << endl;
+            }else if(i-1 < 0){
+                // OVERFLOW
+            }
+
+            iMaiorNumero[i] = iMaiorNumero[i] - iMenorNumero[i];
+        }
+
+        Resize();
+        return 0;
     }
 
     // return true if this is bigger than other
@@ -176,6 +204,9 @@ int main(){
     }
 
     cout << "------------SOMA------------" << endl;
-    meuNumero + meuNumero2;
+    //meuNumero + meuNumero2;
+    //meuNumero.PrintInteiroGigante();
+    cout << "----------SUBTRAÇÃO------------" << endl;
+    meuNumero - meuNumero2;
     meuNumero.PrintInteiroGigante();
 }
